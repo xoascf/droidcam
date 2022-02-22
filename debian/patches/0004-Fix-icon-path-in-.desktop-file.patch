@@ -1,0 +1,21 @@
+From: =?utf-8?q?J=C3=B6rn-Thorben_Hinz?= <jtdor@users.noreply.github.co>
+Date: Mon, 14 Feb 2022 23:24:10 +0100
+Subject: Fix icon path in .desktop file
+
+---
+ droidcam.desktop | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/droidcam.desktop b/droidcam.desktop
+index 0fdbdb7..4008571 100644
+--- a/droidcam.desktop
++++ b/droidcam.desktop
+@@ -4,7 +4,7 @@ Name=DroidCam
+ Comment=Use your phone as a webcam
+ TryExec=/usr/local/bin/droidcam
+ Exec=/usr/local/bin/droidcam
+-Icon=/opt/droidcam-icon.png
++Icon=com.dev47apps.droidcam
+ Terminal=false
+ Type=Application
+ Categories=Video;AudioVideo;

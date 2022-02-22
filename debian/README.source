@@ -1,0 +1,19 @@
+# Debian packaging for the [DroidCam Linux client](https://github.com/dev47apps/droidcam)
+
+## Building & Installing
+Install build dependencies as root:
+```console
+root@host:droidcam-deb# apt install dpkg-dev devscripts equivs
+root@host:droidcam-deb# mk-build-deps --install --remove
+```
+
+Build the packages as your normal user:
+```console
+user@host:droidcam-deb$ DEB_BUILD_OPTIONS=noautodbgsym dpkg-buildpackage --build=binary --no-sign
+```
+
+Install the packages as root:
+```console
+root@host:droidcam-deb# apt install ../droidcam-cli_1.0.0-1_amd64.deb ../droidcam-dkms_1.0.0-1_amd64.deb ../droidcam-gtk_1.0.0-1_amd64.deb
+```
+Adjust the versions in the filenames appropriately.

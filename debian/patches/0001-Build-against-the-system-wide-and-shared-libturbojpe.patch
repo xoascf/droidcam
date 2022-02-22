@@ -1,0 +1,31 @@
+From: =?utf-8?q?J=C3=B6rn-Thorben_Hinz?= <jtdor@users.noreply.github.co>
+Date: Mon, 14 Feb 2022 19:54:58 +0100
+Subject: Build against the system-wide and shared libturbojpeg
+
+---
+ Makefile | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 7be3c15..9135630 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,17 +6,13 @@
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ # Use at your own risk. See README file for more details.
+ 
+-JPEG_DIR ?= /opt/libjpeg-turbo
+-JPEG_INCLUDE ?= $(JPEG_DIR)/include
+-JPEG_LIB ?= $(JPEG_DIR)/lib`getconf LONG_BIT`
+-
+ CC   = gcc
+ CFLAGS = -Wall -O2
+ GTK   = `pkg-config --libs --cflags gtk+-3.0` `pkg-config --libs x11`
+ GTK  += `pkg-config --cflags --libs appindicator3-0.1`
+ LIBAV = `pkg-config --libs --cflags libswscale libavutil`
+ LIBS  =  -lspeex -lasound -lpthread -lm
+-JPEG  = -I$(JPEG_INCLUDE) $(JPEG_LIB)/libturbojpeg.a
++JPEG  = `pkg-config --cflags --libs libturbojpeg`
+ SRC   = src/connection.c src/settings.c src/decoder*.c src/av.c src/usb.c src/queue.c
+ USBMUXD = -lusbmuxd
+ 

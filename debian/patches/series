@@ -1,0 +1,5 @@
+0001-Build-against-the-system-wide-and-shared-libturbojpe.patch
+0002-Build-against-libayatana-appindicator.patch
+0003-Fix-icon-path-in-desktop-application.patch
+0004-Fix-icon-path-in-.desktop-file.patch
+0005-Fix-executable-path-in-.desktop-file.patch
