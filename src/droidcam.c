@@ -105,7 +105,7 @@ void UpdateBatteryLabel(char *battery_value)  {
 	gtk_label_set_text(GTK_LABEL(batteryText), battery_value);
 }
 
-static void Stop(void) {
+static void stop_av(void) {
 	a_running = false;
 	v_running = false;
 	dbgprint("join\n");
@@ -125,7 +125,9 @@ static void Stop(void) {
 		g_thread_join(hBatteryThread);
 		hBatteryThread = NULL;
 	}
+}
 
+static void reset_ui(void) {
 	gtk_widget_set_sensitive(GTK_WIDGET(elButton), FALSE);
 	gtk_widget_set_sensitive(GTK_WIDGET(wbButton), FALSE);
 	gtk_widget_set_sensitive(GTK_WIDGET(menuButton), FALSE);
@@ -255,7 +257,8 @@ _up:
 	switch (cb) {
 		case CB_BUTTON:
 			if (v_running || a_running) {
-				Stop();
+				reset_ui();
+				stop_av();
 				cb = (int)g_settings.connection;
 				goto _up;
 			}
@@ -664,7 +667,7 @@ int main(int argc, char *argv[])
 	g_signal_connect(window, "delete-event", G_CALLBACK(delete_window_callback), window);
 	gtk_widget_show_all(window);
 
-	Stop(); // reset the UI
+	reset_ui();
 	LoadSettings(&g_settings);
 	if (argc >= 1) {
 		parse_args(argc, argv);
@@ -711,7 +714,7 @@ int main(int argc, char *argv[])
 
 		// main loop
 		gtk_main();
-		Stop();
+		stop_av();
 		decoder_fini();
 		connection_cleanup();
 		SaveSettings(&g_settings);
