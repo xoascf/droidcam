@@ -10,17 +10,18 @@
 #include "settings.h"
 #include "connection.h"
 #include "decoder.h"
+#include <stdatomic.h>
 #include <stdint.h>
 
-extern int a_running;
-extern int v_running;
-extern int thread_cmd;
+extern atomic_bool a_running;
+extern atomic_bool v_running;
+extern char thread_cmd;
 extern struct settings g_settings;
 
 const char *thread_cmd_val_str;
 
 SOCKET GetConnection(void) {
-    char *err;
+    const char *err;
     SOCKET socket = INVALID_SOCKET;
 
     if (g_settings.connection == CB_RADIO_IOS) {
@@ -91,7 +92,7 @@ void *BatteryThreadProc(__attribute__((__unused__)) void *args) {
 
 void *DecodeThreadProc(__attribute__((__unused__)) void *args) {
     dbgprint("Decode Thread Start\n");
-    while (v_running != 0) {
+    while (v_running) {
         JPGFrame *f = pull_ready_jpg_frame();
         if (!f) {
             usleep(2000);
@@ -134,9 +135,8 @@ server_wait:
         goto early_out;
     }
 
-    while (v_running != 0){
+    while (v_running){
         if (thread_cmd != 0) {
-            len = 0;
             if (thread_cmd == CB_CONTROL_WB) {
                 len = snprintf(buf, sizeof(buf), OTHER_REQ_STR, thread_cmd, thread_cmd_val_str);
             }

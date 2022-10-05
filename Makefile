@@ -6,26 +6,20 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # Use at your own risk. See README file for more details.
 
-#
 # Variables with ?= can be changed during invocation
 # Example:
 #  APPINDICATOR=ayatana-appindicator3-0.1 make droidcam
 
 APPINDICATOR ?= appindicator3-0.1
-JPEG_DIR     ?= /opt/libjpeg-turbo
-JPEG_INCLUDE ?= $(JPEG_DIR)/include
-JPEG_LIB     ?= $(JPEG_DIR)/lib`getconf LONG_BIT`
+CFLAGS ?= -Wall -O2
 
-
-CC   = gcc
-CFLAGS = -Wall -O2
 GTK   = `pkg-config --libs --cflags gtk+-3.0` `pkg-config --libs x11`
 GTK  += `pkg-config --libs --cflags $(APPINDICATOR)`
 LIBAV = `pkg-config --libs --cflags libswscale libavutil`
-LIBS  =  -lspeex -lasound -lpthread -lm
-JPEG  = -I$(JPEG_INCLUDE) $(JPEG_LIB)/libturbojpeg.a
+LIBS  = -lspeex -lasound -lpthread -lm
+JPEG  = `pkg-config --libs --cflags libturbojpeg`
 SRC   = src/connection.c src/settings.c src/decoder*.c src/av.c src/usb.c src/queue.c
-USBMUXD = -lusbmuxd
+USBMUXD = `pkg-config --libs --cflags libusbmuxd-2.0`
 
 ifneq ($(findstring ayatana,$(APPINDICATOR)),)
 	CFLAGS += -DUSE_AYATANA_APPINDICATOR

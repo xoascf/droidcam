@@ -9,6 +9,8 @@
 #include <arpa/inet.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <stdatomic.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/select.h>
@@ -20,14 +22,14 @@
 #include "connection.h"
 
 SOCKET wifiServerSocket = INVALID_SOCKET;
-extern int v_running;
+extern atomic_bool v_running;
 
-char* DROIDCAM_CONNECT_ERROR = \
+const char* DROIDCAM_CONNECT_ERROR = \
     "Connect failed, please try again.\n"
     "Check IP and Port.\n"
     "Check network connection.\n";
 
-SOCKET Connect(const char* ip, int port, char **errormsg) {
+SOCKET Connect(const char* ip, int port, const char **errormsg) {
     int flags;
     struct sockaddr_in sin;
     SOCKET sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
