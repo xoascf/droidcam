@@ -1,0 +1,23 @@
+From: =?utf-8?q?J=C3=B6rn-Thorben_Hinz?= <jtdor@users.noreply.github.co>
+Date: Mon, 14 Feb 2022 23:24:58 +0100
+Subject: Fix executable path in .desktop file
+
+---
+ droidcam.desktop | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/droidcam.desktop b/droidcam.desktop
+index 4008571..b7ad7b7 100644
+--- a/droidcam.desktop
++++ b/droidcam.desktop
+@@ -2,8 +2,8 @@
+ Encoding=UTF-8
+ Name=DroidCam
+ Comment=Use your phone as a webcam
+-TryExec=/usr/local/bin/droidcam
+-Exec=/usr/local/bin/droidcam
++TryExec=droidcam
++Exec=droidcam
+ Icon=com.dev47apps.droidcam
+ Terminal=false
+ Type=Application

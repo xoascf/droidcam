@@ -1,0 +1,35 @@
+From: =?utf-8?q?J=C3=B6rn-Thorben_Hinz?= <jtdor@users.noreply.github.co>
+Date: Mon, 14 Feb 2022 19:56:05 +0100
+Subject: Build against libayatana-appindicator
+
+---
+ Makefile       | 2 +-
+ src/droidcam.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 9135630..b5265f4 100644
+--- a/Makefile
++++ b/Makefile
+@@ -9,7 +9,7 @@
+ CC   = gcc
+ CFLAGS = -Wall -O2
+ GTK   = `pkg-config --libs --cflags gtk+-3.0` `pkg-config --libs x11`
+-GTK  += `pkg-config --cflags --libs appindicator3-0.1`
++GTK  += `pkg-config --cflags --libs ayatana-appindicator3-0.1`
+ LIBAV = `pkg-config --libs --cflags libswscale libavutil`
+ LIBS  =  -lspeex -lasound -lpthread -lm
+ JPEG  = `pkg-config --cflags --libs libturbojpeg`
+diff --git a/src/droidcam.c b/src/droidcam.c
+index cad1ee4..28f4000 100644
+--- a/src/droidcam.c
++++ b/src/droidcam.c
+@@ -7,7 +7,7 @@
+  */
+ 
+ #include <gtk/gtk.h>
+-#include <libappindicator/app-indicator.h>
++#include <libayatana-appindicator/app-indicator.h>
+ #include <X11/Xlib.h>
+ #include <stdint.h>
+ 

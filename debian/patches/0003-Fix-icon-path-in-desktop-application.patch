@@ -1,0 +1,21 @@
+From: =?utf-8?q?J=C3=B6rn-Thorben_Hinz?= <jtdor@users.noreply.github.co>
+Date: Mon, 14 Feb 2022 23:23:34 +0100
+Subject: Fix icon path in desktop application
+
+---
+ src/droidcam.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/droidcam.c b/src/droidcam.c
+index 28f4000..80f1320 100644
+--- a/src/droidcam.c
++++ b/src/droidcam.c
+@@ -43,7 +43,7 @@ struct settings g_settings = {0};
+ extern const char *thread_cmd_val_str;
+ extern char snd_device[32];
+ extern char v4l2_device[32];
+-const char *APP_ICON_FILE = "/opt/droidcam-icon.png";
++const char *APP_ICON_FILE = "/usr/share/icons/hicolor/96x96/apps/com.dev47apps.droidcam.png";
+ 
+ void * AudioThreadProc(void * args);
+ void * VideoThreadProc(void * args);

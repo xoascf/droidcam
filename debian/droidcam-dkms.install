@@ -1,0 +1,3 @@
+#!/usr/bin/dh-exec
+debian/droidcam-dkms.droidcam.modules-load => usr/lib/modules-load.d/droidcam.conf
+v4l2loopback/* usr/src/droidcam-${DEB_VERSION_UPSTREAM}/

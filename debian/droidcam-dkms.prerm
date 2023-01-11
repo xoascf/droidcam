@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = remove ]; then
+	while read -r module; do
+		sed -i "/^${module}\$/d" /etc/modules
+	done < /usr/lib/modules-load.d/droidcam.conf
+fi
+
+#DEBHELPER#
+
+exit 0
