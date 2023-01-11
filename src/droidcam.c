@@ -50,7 +50,7 @@ struct settings g_settings = {0};
 extern const char *thread_cmd_val_str;
 extern char snd_device[32];
 extern char v4l2_device[32];
-const char *APP_ICON_FILE = "/opt/droidcam-icon.png";
+const char *APP_ICON_FILE = "/usr/share/icons/hicolor/96x96/apps/com.dev47apps.droidcam.png";
 
 void * AudioThreadProc(void * args);
 void * VideoThreadProc(void * args);

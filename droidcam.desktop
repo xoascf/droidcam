@@ -2,9 +2,9 @@
 Encoding=UTF-8
 Name=DroidCam
 Comment=Use your phone as a webcam
-TryExec=/usr/local/bin/droidcam
-Exec=/usr/local/bin/droidcam
-Icon=/opt/droidcam-icon.png
+TryExec=droidcam
+Exec=droidcam
+Icon=com.dev47apps.droidcam
 Terminal=false
 Type=Application
 Categories=Video;AudioVideo;
